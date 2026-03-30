@@ -155,7 +155,33 @@ def styled_histogram(df, column_name, title):
         title=title,
         template="plotly_white"
     )
-    fig.update_layout(title_x=0.1)
+
+    fig.update_traces(
+        marker=dict(
+            color="#f4b942",
+            line=dict(color="#17324d", width=1.5)
+        ),
+        opacity=0.9
+    )
+
+    fig.update_layout(
+        title_x=0.1,
+        plot_bgcolor="white",
+        paper_bgcolor="white",
+        font=dict(color="#17324d", size=14),
+        xaxis=dict(
+            title=column_name,
+            showgrid=False,
+            zeroline=False
+        ),
+        yaxis=dict(
+            title="Count",
+            showgrid=True,
+            gridcolor="#d9e2ec",
+            zeroline=False
+        )
+    )
+
     return fig
 
 def styled_scatter(df, x_col, y_col, title):
@@ -169,7 +195,23 @@ def styled_scatter(df, x_col, y_col, title):
         template="plotly_white",
         hover_data=df.columns.tolist()[:8]
     )
-    fig.update_layout(title_x=0.1)
+
+    fig.update_traces(
+        marker=dict(
+            size=9,
+            line=dict(color="#17324d", width=1)
+        )
+    )
+
+    fig.update_layout(
+        title_x=0.1,
+        plot_bgcolor="white",
+        paper_bgcolor="white",
+        font=dict(color="#17324d", size=14),
+        xaxis=dict(showgrid=True, gridcolor="#e5e7eb"),
+        yaxis=dict(showgrid=True, gridcolor="#e5e7eb")
+    )
+
     return fig
 
 def styled_line(df, x_col, y_col, title):
