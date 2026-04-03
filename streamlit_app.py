@@ -1,3 +1,5 @@
+from rag_chatbot import get_answer
+
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -66,7 +68,7 @@ div[data-testid="stMetric"] {
 st.sidebar.title("Navigation")
 page = st.sidebar.radio(
     "Go to",
-    ["Overview", "EDA Dashboard", "Prediction", "Explainable AI", "Conclusion"]
+    ["Overview", "EDA Dashboard", "Prediction", "Explainable AI", "RAG Chatbot", "Conclusion"]
 )
 
 # ---------------- LOAD DATA ----------------
@@ -500,3 +502,16 @@ elif page == "Conclusion":
     - Machine learning can estimate future output using project features.
     - Explainable AI improves transparency by showing feature importance and model errors.
     """)
+    
+elif page == "RAG Chatbot":
+    st.title("RAG Chatbot")
+    st.write("Ask a question about the solar project data.")
+
+    user_question = st.text_input("Enter your question")
+
+    if st.button("Ask"):
+        if user_question:
+            answer = get_answer(user_question)
+            st.write("Answer:")
+            st.write(answer)
+            
